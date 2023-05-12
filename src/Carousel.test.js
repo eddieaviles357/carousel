@@ -72,4 +72,64 @@ it("works when you click on the left arrow", function() {
   expect(
     container.querySelector('img[alt="testing image 1"]')
   ).toBeInTheDocument();
-})
+});
+
+it("should disable left arrow when there are no images to the start", function() {
+  const {container} = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />
+  );
+  
+  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+  fireEvent.click(rightArrow);
+
+  expect(
+    container.querySelector('img[alt="testing image 2"]')
+  ).toBeInTheDocument();
+
+  const leftArrow = container.querySelector(".bi-arrow-left-circle");
+  fireEvent.click(leftArrow);
+
+  expect(
+    container.querySelector('img[alt="testing image 1"]')
+  ).toBeInTheDocument();
+
+  // should be disabled
+  fireEvent.click(leftArrow);
+
+  // since left button is disabled image should still be the same
+  expect(
+    container.querySelector('img[alt="testing image 1"]')
+  ).toBeInTheDocument();
+});
+
+it("should disable right arrow when there are no images to the end", function() {
+  const {container} = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />
+  );
+  
+  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+  fireEvent.click(rightArrow);
+
+  expect(
+    container.querySelector('img[alt="testing image 2"]')
+  ).toBeInTheDocument();
+  
+  fireEvent.click(rightArrow);
+
+  expect(
+    container.querySelector('img[alt="testing image 3"]')
+  ).toBeInTheDocument();
+
+  // should be disabled
+  fireEvent.click(rightArrow);
+
+  expect(
+    container.querySelector('img[alt="testing image 3"]')
+  ).toBeInTheDocument();
+});
