@@ -36,7 +36,7 @@ import Card from "./Card";
       <div className="Carousel-main">
         <i
           className="bi bi-arrow-left-circle"
-          onClick={goBack}
+          onClick={currCardIdx < 1 ? null : goBack}
         />
         <Card
           caption={currCard.caption}
@@ -46,7 +46,7 @@ import Card from "./Card";
         />
         <i
           className="bi bi-arrow-right-circle"
-          onClick={goForward}
+          onClick={currCardIdx < 2 ? goForward : null}
         />
       </div>
     </div>
