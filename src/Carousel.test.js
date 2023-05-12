@@ -3,7 +3,7 @@ import Carousel from "./Carousel";
 import TEST_IMAGES from "./_testCommon.js";
 
 // smoke test
-it('reners without crashing', function() {
+it('renders without crashing', function() {
   render(
     <Carousel photos={TEST_IMAGES} title="images for testing"/>
     );
